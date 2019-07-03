@@ -1,9 +1,18 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Nav from './components/Nav'
+import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 
 function App() {
   return (
-   <div></div>
+    <div>
+      <BrowserRouter>
+        <Nav />
+        <Switch>
+          <Route />
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 }
 
