@@ -5,7 +5,13 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import rootReducer from './reducers/rootReducer'
+import reducerA from './reducers/reducerA'
+import { combineReducers } from 'redux'
+
+const rootReducer = combineReducers({
+    rA:reducerA
+  })
+  export default rootReducer
 
 const store = createStore(rootReducer);
 
