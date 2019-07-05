@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AdddTodo from "./components/AddTodo";
 import Nav from "./components/Nav";
 import ShowTodo from "./components/ShowTodo";
+import EditTodo from './components/EditTodo'
 import {
   submit,
   edit,
@@ -40,6 +41,13 @@ function App(props) {
               />
             )}
             path="/show-todo"
+          />
+          <Route 
+            render={()=>(
+              <EditTodo />
+            )}
+            path='/edit-todo'
+
           />
         </Switch>
       </BrowserRouter>
