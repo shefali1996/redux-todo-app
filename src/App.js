@@ -32,7 +32,13 @@ function App(props) {
             path="/"
           />
           <Route
-            render={() => <ShowTodo todos={props.todos} state={props.state} />}
+            render={() => (
+              <ShowTodo
+                todos={props.todos}
+                state={props.state}
+                inputChecked={props.inputChecked}
+              />
+            )}
             path="/show-todo"
           />
         </Switch>
@@ -42,6 +48,7 @@ function App(props) {
 }
 
 const mapStateToProps = state => {
+
   return {
     text: state.TodoReducer.text,
     todos: state.TodoReducer.todos
@@ -55,7 +62,7 @@ const mapDispachToProps = dispatch => {
     del: () => dispatch(del),
     getValue: val => dispatch(getValue(val)),
     getValue1: () => dispatch(getValue1),
-    checked: () => dispatch(checked)
+    inputChecked: i => dispatch(checked(i))
   };
 };
 

@@ -1,27 +1,38 @@
+import cloneDeep from "lodash/cloneDeep";
+const initialState = {
+  todos: [],
+  text: ""
+};
 
-const initialState={
-    todos : [],
-    text:"",
-}
+function reducerA(state = initialState, action) {
+  let cloneState = cloneDeep(state);
 
-function reducerA(state =initialState,action){
-    let cloneState={...state}
+  switch (action.type) {
+    case "GETVALUE":
+      return {
+        ...state,
+        text: action.val
+      };
 
-    switch(action.type){
-        case 'GETVALUE':
-        return {
-            ...state,
-            text:action.val,
-        }
+    case "SUBMIT":
+      let x = cloneState.todos.concat({
+        text: cloneState.text,
+        edit: false,
+        check: false
+      });
+      return {
+        ...state,
+        todos: x,
+        text: ""
+      };
 
-        case 'SUBMIT':
-            cloneState.todos.push({text:cloneState.text,checked:false,edit:false,completed:false})
-        return {
-            ...state,
-            todos:cloneState.todos,
-            text:""
-        }
-}
-return state
+    case "CHECKED":
+      cloneState.todos[action.i].check = !cloneState.todos[action.i].check;
+      return {
+        ...state,
+        todos: cloneState.todos
+      };
+  }
+  return state;
 }
 export default reducerA;

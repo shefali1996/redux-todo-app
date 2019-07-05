@@ -1,20 +1,21 @@
-import React from 'react'
-function ShowTodo(props){
-console.log(props.todos);
-      return (
-        <div className="container">
-          {props.todos.map((val, i) => (
-            <div className="todo" key={i}>
-              <input
-                className="checkbox"
-                type="checkbox"
-              />
-              <div className="val">{val.text}</div>
-            </div>
-          ))}
+import React from "react";
+function ShowTodo(props) {
+  return (
+    <div className="container">
+      {props.todos.map((val, i) => (
+        <div className="todo" key={i}>
+          <input
+            className="checkbox"
+            type="checkbox"
+            onClick={() => props.inputChecked(i)}
+            checked={props.todos[i].check}
+          />
+          <div className="val">{val.text}</div>
+          <div>{val.check && "Completed"}</div>
         </div>
-      );
-  }
+      ))}
+    </div>
+  );
+}
 
-  export default ShowTodo;
-  
+export default ShowTodo;
