@@ -1,4 +1,4 @@
-export function submit(val) {
+export function submit(id) {
     return { type: 'SUBMIT'}
   }
 

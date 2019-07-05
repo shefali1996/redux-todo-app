@@ -9,7 +9,7 @@ console.log(props.todos);
                 className="checkbox"
                 type="checkbox"
               />
-              <div className="val">{props.text}</div>
+              <div className="val">{val.text}</div>
             </div>
           ))}
         </div>

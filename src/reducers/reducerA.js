@@ -1,34 +1,26 @@
 
 const initialState={
     todos : [],
-    text:""
-}
-
-const todo={
     text:"",
-    check:false
 }
 
 function reducerA(state =initialState,action){
+    let cloneState={...state}
+
     switch(action.type){
         case 'GETVALUE':
         return {
             ...state,
             text:action.val,
-
         }
 
         case 'SUBMIT':
+            cloneState.todos.push({text:cloneState.text,checked:false,edit:false,completed:false})
         return {
             ...state,
-            todos:state.todos.concat(todo),
-            
-
+            todos:cloneState.todos,
+            text:""
         }
-
-            
-    
-    
 }
 return state
 }

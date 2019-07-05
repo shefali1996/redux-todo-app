@@ -9,7 +9,7 @@ import reducerA from './reducers/reducerA'
 import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
-    rA:reducerA
+    TodoReducer:reducerA
   })
   export default rootReducer
 
