@@ -21,6 +21,7 @@ function App(props) {
                 submit={props.submit}
                 getValue={props.getValue}
                 text={props.text}
+                state={props.state}
               />
             )}
             exact
@@ -30,7 +31,6 @@ function App(props) {
             render={() => (
               <ShowTodo
                 todos={props.todos}
-                state={props.state}
                 inputCompleted={props.inputCompleted}
               />
             )}
@@ -46,6 +46,7 @@ function App(props) {
 
 const mapStateToProps = state => {
   return {
+    state: state.TodoReducer,
     text: state.TodoReducer.text,
     todos: state.TodoReducer.todos
   };
