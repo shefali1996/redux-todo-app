@@ -4,14 +4,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AdddTodo from "./components/AddTodo";
 import Nav from "./components/Nav";
 import ShowTodo from "./components/ShowTodo";
-import EditTodo from './components/EditTodo'
-import {
-  submit,
-  del,
-  getValue1,
-  getValue,
-  checked
-} from "./actions/actions";
+import EditTodo from "./components/EditTodo";
+import DeleteTodo from "./components/DeleteTodo";
+import { submit, getValue1, getValue, completed } from "./actions/actions";
 import { connect } from "react-redux";
 
 function App(props) {
@@ -36,18 +31,13 @@ function App(props) {
               <ShowTodo
                 todos={props.todos}
                 state={props.state}
-                inputChecked={props.inputChecked}
+                inputCompleted={props.inputCompleted}
               />
             )}
             path="/show-todo"
           />
-          <Route 
-            render={()=>(
-              <EditTodo />
-            )}
-            path='/edit-todo'
-
-          />
+          <Route render={() => <EditTodo />} path="/edit-todo" />
+          <Route render={() => <DeleteTodo />} path="/delete-todo" />
         </Switch>
       </BrowserRouter>
     </div>
@@ -64,10 +54,9 @@ const mapStateToProps = state => {
 const mapDispachToProps = dispatch => {
   return {
     submit: () => dispatch(submit()),
-    del: () => dispatch(del),
     getValue: val => dispatch(getValue(val)),
     getValue1: () => dispatch(getValue1),
-    inputChecked: i => dispatch(checked(i))
+    inputCompleted: i => dispatch(completed(i))
   };
 };
 

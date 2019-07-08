@@ -15,33 +15,33 @@ function reducerA(state = initialState, action) {
       };
 
     case "SUBMIT":
-      let todo= cloneState.todos.concat({
-        text: cloneState.text,
-        edit: false,
-        check: false,
-        save:false
-      });
-      return {
-        ...state,
-        todos: todo,
-        text: ""
-      };
+        let todo = cloneState.todos.concat({
+          text: cloneState.text,
+          edit: false,
+          completed: false,
+          save: false
+        });
+        return {
+          ...state,
+          todos: todo,
+          text: ""
+        };
 
-    case "CHECKED":
-      cloneState.todos[action.i].check = !cloneState.todos[action.i].check;
+    case "COMPLETED":
+      cloneState.todos[action.i].completed = !cloneState.todos[action.i].completed;
       return {
         ...state,
         todos: cloneState.todos
       };
 
-      case "EDIT":
+    case "EDIT":
       cloneState.todos[action.id].edit = !cloneState.todos[action.id].edit;
       return {
         ...state,
         todos: cloneState.todos
       };
 
-      case "SAVE":
+    case "SAVE":
       cloneState.todos[action.id].save = !cloneState.todos[action.id].save;
       cloneState.todos[action.id].edit = !cloneState.todos[action.id].edit;
       return {
@@ -49,13 +49,20 @@ function reducerA(state = initialState, action) {
         todos: cloneState.todos
       };
 
-      case "GETVALUE1":
-      cloneState.todos[action.boxId].text=action.val1;
+    case "GETVALUE1":
+      cloneState.todos[action.boxId].text = action.val1;
       return {
         ...state,
-        todos:cloneState.todos
+        todos: cloneState.todos
       };
 
+    case "DEL":
+      return {
+        ...state,
+        todos: state.todos.filter(
+          val => state.todos.indexOf(val) !== action.delId
+        )
+      };
   }
   return state;
 }

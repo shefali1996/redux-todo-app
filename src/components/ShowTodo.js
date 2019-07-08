@@ -7,11 +7,11 @@ function ShowTodo(props) {
           <input
             className="checkbox"
             type="checkbox"
-            onClick={() => props.inputChecked(i)}
-            checked={props.todos[i].check}
+            onClick={() => props.inputCompleted(i)}
+            checked={props.todos[i].completed}
           />
           <div className="val">{val.text}</div>
-          <div>{val.check && "Completed"}</div>
+          <div>{val.completed && "Completed"}</div>
         </div>
       ))}
     </div>
