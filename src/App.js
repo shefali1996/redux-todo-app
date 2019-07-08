@@ -7,7 +7,6 @@ import ShowTodo from "./components/ShowTodo";
 import EditTodo from './components/EditTodo'
 import {
   submit,
-  edit,
   del,
   getValue1,
   getValue,
@@ -56,7 +55,6 @@ function App(props) {
 }
 
 const mapStateToProps = state => {
-
   return {
     text: state.TodoReducer.text,
     todos: state.TodoReducer.todos
@@ -66,7 +64,6 @@ const mapStateToProps = state => {
 const mapDispachToProps = dispatch => {
   return {
     submit: () => dispatch(submit()),
-    edit: () => dispatch(edit),
     del: () => dispatch(del),
     getValue: val => dispatch(getValue(val)),
     getValue1: () => dispatch(getValue1),
