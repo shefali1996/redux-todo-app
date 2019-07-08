@@ -15,14 +15,15 @@ function reducerA(state = initialState, action) {
       };
 
     case "SUBMIT":
-      let x = cloneState.todos.concat({
+      let todo= cloneState.todos.concat({
         text: cloneState.text,
         edit: false,
-        check: false
+        check: false,
+        save:false
       });
       return {
         ...state,
-        todos: x,
+        todos: todo,
         text: ""
       };
 
@@ -32,6 +33,29 @@ function reducerA(state = initialState, action) {
         ...state,
         todos: cloneState.todos
       };
+
+      case "EDIT":
+      cloneState.todos[action.id].edit = !cloneState.todos[action.id].edit;
+      return {
+        ...state,
+        todos: cloneState.todos
+      };
+
+      case "SAVE":
+      cloneState.todos[action.id].save = !cloneState.todos[action.id].save;
+      cloneState.todos[action.id].edit = !cloneState.todos[action.id].edit;
+      return {
+        ...state,
+        todos: cloneState.todos
+      };
+
+      case "GETVALUE1":
+      cloneState.todos[action.boxId].text=action.val1;
+      return {
+        ...state,
+        todos:cloneState.todos
+      };
+
   }
   return state;
 }
