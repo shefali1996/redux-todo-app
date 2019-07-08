@@ -11,10 +11,12 @@ function reducerA(state = initialState, action) {
     case "GETVALUE":
       return {
         ...state,
-        text: action.val
+        text: action.val,
+        error: "blue"
       };
 
     case "SUBMIT":
+      if (state.text !== "") {
         let todo = cloneState.todos.concat({
           text: cloneState.text,
           edit: false,
@@ -26,9 +28,16 @@ function reducerA(state = initialState, action) {
           todos: todo,
           text: ""
         };
+      } else {
+        return {
+          ...state,
+          error: "red"
+        };
+      }
 
     case "COMPLETED":
-      cloneState.todos[action.i].completed = !cloneState.todos[action.i].completed;
+      cloneState.todos[action.i].completed = !cloneState.todos[action.i]
+        .completed;
       return {
         ...state,
         todos: cloneState.todos
